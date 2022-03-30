@@ -1,6 +1,8 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class EmployeeWage {
@@ -8,15 +10,18 @@ public class EmployeeWage {
     static final int EMP_PART_TIME = 2;
 
     private ArrayList<EmployeeWage1> employeeWage1ArrayList;
+    private Map<String, EmployeeWage1> companyToEmployeeWageMap;
 
     public EmployeeWage() {
         employeeWage1ArrayList = new ArrayList<EmployeeWage1>();
+        companyToEmployeeWageMap = new HashMap<>();
     }
 
     public void addCompanyEmpWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
 
         EmployeeWage1 employeeWage1 = new EmployeeWage1 (company, wagePerHour, workingDay, totalWorkHrs);
         employeeWage1ArrayList.add(employeeWage1);
+        companyToEmployeeWageMap.put(company,employeeWage1);
     }
 
     public void calculateEmpWage() {
@@ -28,6 +33,11 @@ public class EmployeeWage {
             System.out.println(employeeWage1.company + "Total Wage is " + employeeWage1.totalWage);
         }
     }
+    
+    public int getTotalWage(String company) {
+        return companyToEmployeeWageMap.get(company).totalWage;
+    }
+
     public void DisplayDailyWageforCompany(EmployeeWage1 employeeWage1) {
         for (int i = 0; i < employeeWage1.empDailyWage.size(); i++) {
             int day = i + 1;
