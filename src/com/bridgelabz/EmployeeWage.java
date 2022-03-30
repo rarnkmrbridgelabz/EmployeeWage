@@ -23,7 +23,15 @@ public class EmployeeWage {
         for(int i=0; i < employeeWage1ArrayList.size(); i++) {
             EmployeeWage1 employeeWage1 = employeeWage1ArrayList.get(i);
             employeeWage1.setTotalEmpWage(this.calculateEmpWage(employeeWage1));
-            System.out.println(employeeWage1.company +"Total Wage is "+ employeeWage1.totalWage);
+            System.out.println("Company Name :" +employeeWage1.company);
+            DisplayDailyWageforCompany(employeeWage1);
+            System.out.println(employeeWage1.company + "Total Wage is " + employeeWage1.totalWage);
+        }
+    }
+    public void DisplayDailyWageforCompany(EmployeeWage1 employeeWage1) {
+        for (int i = 0; i < employeeWage1.empDailyWage.size(); i++) {
+            int day = i + 1;
+            System.out.println("Daily Wage For Day" + day + ":" + employeeWage1.empDailyWage.get(i));
         }
     }
 
