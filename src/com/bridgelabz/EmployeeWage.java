@@ -18,7 +18,7 @@ public class EmployeeWage {
         this.totalWorkHrs = totalWorkHrs;
     }
 
-    public void EmpWageBuilder(){
+    public void calculateEmpWage(){
 
         int empWage = 0;
         int totalWage = 0;
@@ -66,18 +66,18 @@ public class EmployeeWage {
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage calculation using EmpWageBuilder");
-        EmployeeWage comp1 = new EmployeeWage("COMP1", 44, 22, 150);
-        EmployeeWage comp2 = new EmployeeWage("COMP2", 80, 21, 222);
-        EmployeeWage comp3 = new EmployeeWage("COMP3", 54, 22, 115);
+        System.out.println("Welcome to Employee Wage calculation");
+        EmployeeWage comp1 = new EmployeeWage("COMP1", 40, 22, 140);
+        EmployeeWage comp2 = new EmployeeWage("COMP2", 90, 21, 222);
+        EmployeeWage comp3 = new EmployeeWage("COMP3", 58, 22, 175);
 
-        comp1.EmpWageBuilder();
+        comp1.calculateEmpWage();
         System.out.println(comp1);
         System.out.println("------------------------------------------------------------------");
-        comp2.EmpWageBuilder();
+        comp2.calculateEmpWage();
         System.out.println(comp2);
         System.out.println("------------------------------------------------------------------");
-        comp3.EmpWageBuilder();
+        comp3.calculateEmpWage();
         System.out.println(comp3);
         System.out.println("------------------------------------------------------------------");
     }
