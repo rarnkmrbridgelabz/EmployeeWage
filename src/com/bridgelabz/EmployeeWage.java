@@ -3,19 +3,29 @@ package com.bridgelabz;
 import java.util.Random;
 
 public class EmployeeWage {
-    static final int FULL_TIME_HOUR = 8;
-    static final int PART_TIME_HOUR = 4;
     static final int EMP_FULL_TIME = 1;
     static final int EMP_PART_TIME = 2;
 
-    public void calculateEmployeeWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
+    public String company;
+    public int wagePerHour;
+    public int workingDay;
+    public int totalWorkHrs;
+
+    public EmployeeWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
+        this.company = company;
+        this.wagePerHour = wagePerHour;
+        this.workingDay = workingDay;
+        this.totalWorkHrs = totalWorkHrs;
+    }
+
+    public void EmpWageBuilder(){
 
         int empWage = 0;
         int totalWage = 0;
         int totalWorkingHours = 0;
         int totalWorkingDays = 0;
 
-        while (totalWorkingDays < workingDay && totalWorkingHours < totalWorkHrs ) {
+        while (totalWorkingDays < workingDay && totalWorkingHours < totalWorkHrs) {
 
             Random random = new Random();
             int empPresent = random.nextInt(3);
@@ -23,18 +33,20 @@ public class EmployeeWage {
 
             int x;
             switch (empPresent) {
+
                 case EMP_FULL_TIME:
-                    x = wagePerHour * FULL_TIME_HOUR;
+
+                    x = wagePerHour * 8;
                     empWage = empWage + x;
-                    totalWorkingHours = totalWorkingHours + FULL_TIME_HOUR;
+                    totalWorkingHours = totalWorkingHours + 8;
                     System.out.println("Employee is present and the wage is : " + empWage);
                     totalWorkingDays++;
                     break;
 
                 case EMP_PART_TIME:
-                    x = wagePerHour * PART_TIME_HOUR;
+                    x = wagePerHour * 4;
                     empWage = empWage + x;
-                    totalWorkingHours = totalWorkingHours + PART_TIME_HOUR;
+                    totalWorkingHours = totalWorkingHours + 4;
                     System.out.println("Employee is Part time present and the wage is : " + empWage);
                     totalWorkingDays++;
                     break;
@@ -48,23 +60,27 @@ public class EmployeeWage {
 
         }
 
-        System.out.println("Total Working Days :" +totalWorkingDays);
-        System.out.println("Total Working Hours :" +totalWorkHrs);
-        System.out.println("Total Employee Wage for company "+ company +" is :" + empWage);
+        System.out.println("Total Working Days :" + totalWorkingDays);
+        System.out.println("Total Working Hours :" + totalWorkHrs);
+        System.out.println("Total Employee Wage for company " + company + " is :" + empWage);
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage calculation");
-        EmployeeWage emp = new EmployeeWage();
-        emp.calculateEmployeeWage("COM1",40,22,140);
-        System.out.println("--------------------------------------------");
-        emp.calculateEmployeeWage("COM2",90,21,222);
-        System.out.println("--------------------------------------------");
-        emp.calculateEmployeeWage("COM3",58,22,175);
-        System.out.println("--------------------------------------------");
+        System.out.println("Welcome to Employee Wage calculation using EmpWageBuilder");
+        EmployeeWage comp1 = new EmployeeWage("COMP1", 44, 22, 150);
+        EmployeeWage comp2 = new EmployeeWage("COMP2", 80, 21, 222);
+        EmployeeWage comp3 = new EmployeeWage("COMP3", 54, 22, 115);
 
+        comp1.EmpWageBuilder();
+        System.out.println(comp1);
+        System.out.println("------------------------------------------------------------------");
+        comp2.EmpWageBuilder();
+        System.out.println(comp2);
+        System.out.println("------------------------------------------------------------------");
+        comp3.EmpWageBuilder();
+        System.out.println(comp3);
+        System.out.println("------------------------------------------------------------------");
     }
-}
 }
 
 
