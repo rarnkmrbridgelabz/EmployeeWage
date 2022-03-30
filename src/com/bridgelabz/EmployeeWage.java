@@ -6,26 +6,33 @@ public class EmployeeWage {
     static final int EMP_FULL_TIME = 1;
     static final int EMP_PART_TIME = 2;
 
-    public String company;
-    public int wagePerHour;
-    public int workingDay;
-    public int totalWorkHrs;
+    private int numOfCompany = 0;
+    private EmployeeWage1[] empWageArray;
 
-    public EmployeeWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
-        this.company = company;
-        this.wagePerHour = wagePerHour;
-        this.workingDay = workingDay;
-        this.totalWorkHrs = totalWorkHrs;
+    public EmployeeWage() {
+        empWageArray = new EmployeeWage1[5];
     }
 
-    public void EmpWageBuilder(){
+    private void addCompanyEmpWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
+
+        empWageArray[numOfCompany] = new EmployeeWage1 (company, wagePerHour, workingDay, totalWorkHrs);
+        numOfCompany++;
+    }
+
+    private void calculateEmpWage() {
+        for(int i=0; i < numOfCompany; i++) {
+            empWageArray[i].setTotalEmpWage(this.calculateEmpWage(empWageArray[i]));
+            System.out.println(empWageArray[i]);
+        }
+    }
+
+    public int calculateEmpWage(EmployeeWage1 employeeWage1){
 
         int empWage = 0;
-        int totalWage = 0;
         int totalWorkingHours = 0;
         int totalWorkingDays = 0;
 
-        while (totalWorkingDays < workingDay && totalWorkingHours < totalWorkHrs) {
+        while (totalWorkingDays < employeeWage1.workingDay && totalWorkingHours < employeeWage1.totalWorkHrs) {
 
             Random random = new Random();
             int empPresent = random.nextInt(3);
@@ -36,7 +43,7 @@ public class EmployeeWage {
 
                 case EMP_FULL_TIME:
 
-                    x = wagePerHour * 8;
+                    x = employeeWage1.wagePerHour * 8;
                     empWage = empWage + x;
                     totalWorkingHours = totalWorkingHours + 8;
                     System.out.println("Employee is present and the wage is : " + empWage);
@@ -44,7 +51,7 @@ public class EmployeeWage {
                     break;
 
                 case EMP_PART_TIME:
-                    x = wagePerHour * 4;
+                    x = employeeWage1.wagePerHour * 4;
                     empWage = empWage + x;
                     totalWorkingHours = totalWorkingHours + 4;
                     System.out.println("Employee is Part time present and the wage is : " + empWage);
@@ -61,26 +68,23 @@ public class EmployeeWage {
         }
 
         System.out.println("Total Working Days :" + totalWorkingDays);
-        System.out.println("Total Working Hours :" + totalWorkHrs);
-        System.out.println("Total Employee Wage for company " + company + " is :" + empWage);
+        System.out.println("Total Working Hours :" + employeeWage1.totalWorkHrs);
+        System.out.println("Total Employee Wage for company " + employeeWage1.company + " is :" + empWage);
+
+        return empWage;
     }
+
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage calculation using EmpWageBuilder");
-        EmployeeWage comp1 = new EmployeeWage("COMP1", 44, 22, 150);
-        EmployeeWage comp2 = new EmployeeWage("COMP2", 80, 21, 222);
-        EmployeeWage comp3 = new EmployeeWage("COMP3", 54, 22, 115);
+        System.out.println("Welcome to Employee Wage calculation");
+        EmployeeWage empWage = new EmployeeWage();
+        empWage.addCompanyEmpWage("BIG BASKET", 40, 22, 140);
+        empWage.addCompanyEmpWage("AMAZON", 90, 21,222);
+        empWage.addCompanyEmpWage("TARGET", 58, 22, 175);
+        empWage.calculateEmpWage();
 
-        comp1.EmpWageBuilder();
-        System.out.println(comp1);
-        System.out.println("------------------------------------------------------------------");
-        comp2.EmpWageBuilder();
-        System.out.println(comp2);
-        System.out.println("------------------------------------------------------------------");
-        comp3.EmpWageBuilder();
-        System.out.println(comp3);
-        System.out.println("------------------------------------------------------------------");
     }
+
 }
 
 
