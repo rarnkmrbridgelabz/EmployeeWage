@@ -13,13 +13,13 @@ public class EmployeeWage {
         empWageArray = new EmployeeWage1[5];
     }
 
-    private void addCompanyEmpWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
+    public void addCompanyEmpWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
 
         empWageArray[numOfCompany] = new EmployeeWage1 (company, wagePerHour, workingDay, totalWorkHrs);
         numOfCompany++;
     }
 
-    private void calculateEmpWage() {
+    public void calculateEmpWage() {
         for(int i=0; i < numOfCompany; i++) {
             empWageArray[i].setTotalEmpWage(this.calculateEmpWage(empWageArray[i]));
             System.out.println(empWageArray[i]);
