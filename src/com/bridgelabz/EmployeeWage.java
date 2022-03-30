@@ -1,28 +1,29 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class EmployeeWage {
     static final int EMP_FULL_TIME = 1;
     static final int EMP_PART_TIME = 2;
 
-    private int numOfCompany = 0;
-    private EmployeeWage1[] empWageArray;
+    private ArrayList<EmployeeWage1> employeeWage1ArrayList;
 
     public EmployeeWage() {
-        empWageArray = new EmployeeWage1[5];
+        employeeWage1ArrayList = new ArrayList<EmployeeWage1>();
     }
 
     public void addCompanyEmpWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
 
-        empWageArray[numOfCompany] = new EmployeeWage1 (company, wagePerHour, workingDay, totalWorkHrs);
-        numOfCompany++;
+        EmployeeWage1 employeeWage1 = new EmployeeWage1 (company, wagePerHour, workingDay, totalWorkHrs);
+        employeeWage1ArrayList.add(employeeWage1);
     }
 
     public void calculateEmpWage() {
-        for(int i=0; i < numOfCompany; i++) {
-            empWageArray[i].setTotalEmpWage(this.calculateEmpWage(empWageArray[i]));
-            System.out.println(empWageArray[i]);
+        for(int i=0; i < employeeWage1ArrayList.size(); i++) {
+            EmployeeWage1 employeeWage1 = employeeWage1ArrayList.get(i);
+            employeeWage1.setTotalEmpWage(this.calculateEmpWage(employeeWage1));
+            System.out.println(employeeWage1.company +"Total Wage is "+ employeeWage1.totalWage);
         }
     }
 
